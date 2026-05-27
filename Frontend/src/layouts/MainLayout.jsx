@@ -1,13 +1,13 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 
 const MainLayout = ({ children }) => {
   return (
     <>
-      <Navbar />
+      <Sidebar />
 
-      <main>{children}</main>
+      <main className="ml-60">{children}</main>
 
       <Footer />
     </>
