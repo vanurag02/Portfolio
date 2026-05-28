@@ -14,5 +14,7 @@ app.get("/", (req, res) => {
   res.send("SERVER IS RUNNING");
 });
 
+app.use("/api", routes);
+
 /* =============== EXPORT APP =============== */
 module.exports = app;

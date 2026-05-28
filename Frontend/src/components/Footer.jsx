@@ -1,10 +1,24 @@
-import React from "react";
+import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <footer>
-      <h1>FOOTER</h1>
-    </footer>
+    <motion.footer
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="ml-60 border-t py-6 flex items-center justify-center"
+      style={{
+        borderColor: "var(--color-border)",
+      }}
+    >
+      <p
+        className="text-[14px] tracking-wider"
+        style={{ color: "var(--color-text-primary)" }}
+      >
+        © {new Date().getFullYear()} Anurag Vaidya. All rights reserved.
+      </p>
+    </motion.footer>
   );
 };
 

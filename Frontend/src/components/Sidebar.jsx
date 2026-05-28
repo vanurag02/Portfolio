@@ -1,7 +1,7 @@
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Moon, Sun, Monitor } from "lucide-react";
-import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import useActiveSection from "../hooks/useActiveSection";
 
 // ─── Theme config ─────────────────────────────────────────────────
 const THEMES = [
@@ -66,19 +66,20 @@ function Sidebar() {
   const [theme, setTheme] = useState(
     () => localStorage.getItem("theme") || "system",
   );
-  const [activeNav, setActiveNav] = useState("#about");
+  const activeSection = useActiveSection([
+    "about",
+    "education",
+    "experience",
+    "projects",
+  ]);
   const [hoveredNav, setHoveredNav] = useState(null);
-
   const sidebarRef = useRef(null);
   const [spotlight, setSpotlight] = useState({ x: -999, y: -999 });
 
   const handleMouseMove = (e) => {
     const rect = sidebarRef.current?.getBoundingClientRect();
     if (!rect) return;
-    setSpotlight({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+    setSpotlight({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
 
   const handleMouseLeave = () => {
@@ -145,8 +146,6 @@ function Sidebar() {
       >
         {/* ── NAME ── */}
         <motion.div variants={itemVariants} className="px-2">
-          {/* Accent line */}
-
           <h1 className="text-2xl font-medium text-(--color-text-primary) tracking-wide">
             Anurag Vaidya
           </h1>
@@ -156,7 +155,7 @@ function Sidebar() {
             animate={{ width: 32 }}
             transition={{ delay: 0.5, duration: 0.4, ease: "easeOut" }}
           />
-          <p className="mt-2 text-[14px] font-medium uppercase tracking-wider text-(--color-text-secondary)">
+          <p className="text-[14px] font-medium uppercase tracking-wider text-(--color-text-secondary)">
             Backend Developer
           </p>
         </motion.div>
@@ -164,15 +163,14 @@ function Sidebar() {
         {/* ── NAVIGATION ── */}
         <motion.nav variants={itemVariants}>
           <ul className="flex flex-col gap-3">
-            {NAV_ITEMS.map(({ href, label, number }) => {
-              const isActive = activeNav === href;
+            {NAV_ITEMS.map(({ href, label }) => {
+              const isActive = `#${activeSection}` === href;
               const isHovered = hoveredNav === href;
 
               return (
                 <motion.li key={href} whileTap={{ scale: 0.97 }}>
                   <a
                     href={href}
-                    onClick={() => setActiveNav(href)}
                     onMouseEnter={() => setHoveredNav(href)}
                     onMouseLeave={() => setHoveredNav(null)}
                     className="relative flex items-center gap-3 px-5 py-2.5 rounded-lg overflow-hidden group"
@@ -212,7 +210,7 @@ function Sidebar() {
 
                     {/* Label */}
                     <motion.span
-                      className="relative text-xl font-medium transition-colors duration-200"
+                      className="relative font-medium"
                       style={{
                         color: isActive
                           ? "var(--color-primary)"
@@ -241,7 +239,7 @@ function Sidebar() {
         {/* ── Divider ── */}
         <motion.div
           variants={itemVariants}
-          className="h-px bg-(--color-border)"
+          className="h-px"
           style={{
             background:
               "linear-gradient(90deg, var(--color-primary)40, var(--color-border), transparent)",
@@ -311,7 +309,6 @@ function Sidebar() {
               title={`${label} theme`}
               className="relative flex flex-1 items-center justify-center rounded-md py-2 z-10"
             >
-              {/* Sliding active pill — the magic */}
               {theme === value && (
                 <motion.div
                   layoutId="theme-pill"
@@ -319,15 +316,8 @@ function Sidebar() {
                   transition={{ type: "spring", stiffness: 500, damping: 35 }}
                 />
               )}
-
               <motion.span
                 className="relative z-10"
-                style={{
-                  color:
-                    theme === value
-                      ? "var(--color-primary)"
-                      : "var(--color-text-secondary)",
-                }}
                 animate={{
                   scale: theme === value ? 1.1 : 1,
                   color:
