@@ -6,7 +6,7 @@ const educationSchema = new mongoose.Schema(
     degree: { type: String, required: true },
     institution: { type: String, required: true },
     year: { type: String, required: true },
-    order: { type: Number, default: 0 }, // for controlling display order
+    order: { type: Number, default: 0 }, // FOR CONTROLLING DISPLAY ORDER
   },
   { timestamps: true },
 );
