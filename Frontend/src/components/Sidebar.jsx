@@ -3,16 +3,18 @@ import { Moon, Sun, Monitor } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import useActiveSection from "../hooks/useActiveSection";
 
-// ─── Theme config ─────────────────────────────────────────────────
+/* =============== THEME CONFIG =============== */
 const THEMES = [
   { value: "light", label: "Light", Icon: Sun },
   { value: "dark", label: "Dark", Icon: Moon },
   { value: "system", label: "System", Icon: Monitor },
 ];
 
+/* =============== NAVIGATION ITEMS =============== */
 const NAV_ITEMS = [
   { href: "#about", label: "About" },
   { href: "#education", label: "Education" },
+  { href: "#skills", label: "Skills" },
   { href: "#experience", label: "Experience" },
   { href: "#projects", label: "Projects" },
 ];
@@ -28,7 +30,7 @@ function applyTheme(theme) {
   document.documentElement.classList.toggle("dark", resolved === "dark");
 }
 
-// ─── Animation variants ───────────────────────────────────────────
+/* =============== ANIMATION VARIANTS =============== */
 const sidebarVariants = {
   hidden: { x: -240, opacity: 0 },
   visible: {
@@ -61,7 +63,7 @@ const bottomVariants = {
   },
 };
 
-// ─── Component ────────────────────────────────────────────────────
+/* =============== MAIN COMPONENT =============== */
 function Sidebar() {
   const [theme, setTheme] = useState(
     () => localStorage.getItem("theme") || "system",
@@ -69,6 +71,7 @@ function Sidebar() {
   const activeSection = useActiveSection([
     "about",
     "education",
+    "skills",
     "experience",
     "projects",
   ]);

@@ -13,7 +13,7 @@ const Footer = () => {
       }}
     >
       <p
-        className="text-[14px] tracking-wider"
+        // className="tracking-wide"
         style={{ color: "var(--color-text-primary)" }}
       >
         © {new Date().getFullYear()} Anurag Vaidya. All rights reserved.
