@@ -104,7 +104,7 @@ const Projects = () => {
               <motion.div
                 key={project._id}
                 variants={itemVariants}
-                className="relative rounded-lg border p-6 cursor-default overflow-hidden"
+                className="relative rounded-xl border p-6 cursor-default overflow-hidden shadow-xl hover:shadow-md transition-shadow duration-200"
                 style={{
                   borderColor: "var(--color-border)",
                   background: "var(--color-bg-subtle)",
@@ -120,16 +120,28 @@ const Projects = () => {
                     {project.title}
                   </h3>
 
-                  {/* Description */}
-                  <p
-                    className="text-sm"
-                    style={{
-                      color: "var(--color-text-secondary)",
-                      lineHeight: "1.7",
-                    }}
-                  >
-                    {project.description}
-                  </p>
+                  {/* Description as bullet points */}
+                  {Array.isArray(project.description) &&
+                    project.description.length > 0 && (
+                      <ul className="flex flex-col gap-1.5 mt-1">
+                        {project.description.map((point, i) => (
+                          <li
+                            key={i}
+                            className="flex items-start gap-2 text-sm"
+                            style={{
+                              color: "var(--color-text-secondary)",
+                              lineHeight: "1.7",
+                            }}
+                          >
+                            <span
+                              className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0"
+                              style={{ background: "var(--color-primary)" }}
+                            />
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
 
                   {/* Tech stack tags */}
                   {project.techStack && project.techStack.length > 0 && (
@@ -137,11 +149,11 @@ const Projects = () => {
                       {project.techStack.map((tech) => (
                         <span
                           key={tech}
-                          className="text-[14px] font-medium px-2.5 py-1 rounded-full border"
+                          className="text-xs font-medium px-2.5 py-1 rounded-full border"
                           style={{
-                            color: "var(--color-primary)",
-                            borderColor: "var(--color-primary)",
-                            background: "var(--color-primary)10",
+                            color: "var(--color-blue-9)",
+                            borderColor: "var(--color-blue-1)",
+                            background: "var(--color-blue-1)",
                           }}
                         >
                           {tech}
