@@ -149,7 +149,7 @@ function Sidebar() {
       >
         {/* ── NAME ── */}
         <motion.div variants={itemVariants} className="px-2">
-          <h1 className="text-2xl font-medium text-(--color-text-primary) tracking-wide">
+          <h1 className="text-[26px] font-semibold text-(--color-text-primary)">
             Anurag Vaidya
           </h1>
           <motion.div
@@ -176,7 +176,7 @@ function Sidebar() {
                     href={href}
                     onMouseEnter={() => setHoveredNav(href)}
                     onMouseLeave={() => setHoveredNav(null)}
-                    className="relative flex items-center gap-3 px-5 py-2.5 rounded-lg overflow-hidden group"
+                    className="relative flex items-center gap-3 px-5 py-2.5 rounded-lg group"
                     style={{ textDecoration: "none" }}
                   >
                     {/* Hover / active background */}
@@ -213,7 +213,7 @@ function Sidebar() {
 
                     {/* Label */}
                     <motion.span
-                      className="relative font-medium"
+                      className="relative font-semibold"
                       style={{
                         color: isActive
                           ? "var(--color-primary)"

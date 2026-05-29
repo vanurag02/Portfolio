@@ -31,7 +31,7 @@ const About = () => {
           variants={itemVariants}
           className="flex items-center gap-3 mb-8"
         >
-          <span className="font-medium uppercase tracking-wider text-[var(--color-primary)]">
+          <span className="font-semibold uppercase text-(--color-primary)">
             About Me
           </span>
           <div

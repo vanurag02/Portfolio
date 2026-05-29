@@ -65,7 +65,7 @@ const Skills = () => {
           variants={itemVariants}
           className="flex items-center gap-3 mb-12"
         >
-          <span className="font-medium uppercase tracking-wider text-[var(--color-primary)]">
+          <span className="font-semibold uppercase text-(--color-primary)">
             Skills
           </span>
           <div
@@ -106,7 +106,7 @@ const Skills = () => {
                   {/* ── Category label ── */}
                   <div className="flex items-center gap-3 mb-5">
                     <span
-                      className="text-xs font-mono font-medium uppercase tracking-widest"
+                      className="text-base font-semibold uppercase tracking-wide"
                       style={{ color: "var(--color-text-secondary)" }}
                     >
                       {category}
@@ -151,7 +151,7 @@ const Skills = () => {
                             <span className="text-2xl">🔧</span>
                           )}
                           <span
-                            className="text-xs font-medium text-center leading-tight"
+                            className="font-medium text-center mt-4 tracking-wide leading-tight"
                             style={{ color: "var(--color-text-primary)" }}
                           >
                             {skill.name}

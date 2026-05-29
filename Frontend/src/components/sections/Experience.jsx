@@ -41,7 +41,7 @@ const Experience = () => {
           variants={itemVariants}
           className="flex items-center gap-3 mb-12"
         >
-          <span className="font-medium uppercase tracking-wider text-[var(--color-primary)]">
+          <span className="font-semibold uppercase text-(--color-primary)">
             Experience
           </span>
           <div
@@ -100,7 +100,7 @@ const Experience = () => {
                 <div className="flex flex-col gap-1.5">
                   {/* Duration */}
                   <span
-                    className="text-base uppercase"
+                    className="text-base font-medium uppercase"
                     style={{ color: "var(--color-primary)" }}
                   >
                     {item.duration}

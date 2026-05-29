@@ -37,10 +37,7 @@ const Projects = () => {
           variants={itemVariants}
           className="flex items-center gap-3 mb-12"
         >
-          <span
-            className="font-medium uppercase tracking-wider"
-            style={{ color: "var(--color-primary)" }}
-          >
+          <span className="font-semibold uppercase text-(--color-primary)">
             Projects
           </span>
           <div
@@ -104,7 +101,7 @@ const Projects = () => {
               <motion.div
                 key={project._id}
                 variants={itemVariants}
-                className="relative rounded-xl border p-6 cursor-default overflow-hidden shadow-xl hover:shadow-md transition-shadow duration-200"
+                className="relative rounded-xl border p-6 cursor-default overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-200"
                 style={{
                   borderColor: "var(--color-border)",
                   background: "var(--color-bg-subtle)",
@@ -172,7 +169,7 @@ const Projects = () => {
                         aria-label="GitHub"
                         className="flex items-center gap-1.5 text-xs font-medium"
                         style={{ color: "var(--color-text-secondary)" }}
-                        whileHover={{ color: "var(--color-primary)" }}
+                        whileHover={{ color: "var(--color-text-primary)" }}
                         transition={{ duration: 0.15 }}
                       >
                         <svg
@@ -195,7 +192,7 @@ const Projects = () => {
                         aria-label="Live Demo"
                         className="flex items-center gap-1.5 text-xs font-medium"
                         style={{ color: "var(--color-text-secondary)" }}
-                        whileHover={{ color: "var(--color-primary)", x: 2 }}
+                        whileHover={{ color: "var(--color-text-primary)" }}
                         transition={{ duration: 0.15 }}
                       >
                         <ExternalLink size={14} />

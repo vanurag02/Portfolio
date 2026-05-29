@@ -36,7 +36,7 @@ const Education = () => {
           variants={itemVariants}
           className="flex items-center gap-3 mb-12"
         >
-          <span className="font-medium uppercase tracking-wider text-[var(--color-primary)]">
+          <span className="font-semibold uppercase text-(--color-primary)">
             Education
           </span>
           <div
