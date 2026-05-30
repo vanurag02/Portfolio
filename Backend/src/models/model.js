@@ -35,9 +35,19 @@ const projectSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
+/* =============== USER SCHEMA =============== */
+const userSchema = new mongoose.Schema(
+  {
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+  },
+  { timestamps: true },
+);
+
 /* =============== EXPORTS =============== */
 const Education = mongoose.model("Education", educationSchema);
 const Skill = mongoose.model("Skill", skillSchema);
 const Project = mongoose.model("Project", projectSchema);
+const User = mongoose.model("User", userSchema);
 
-module.exports = { Education, Skill, Project };
+module.exports = { Education, Skill, Project, User };
