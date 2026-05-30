@@ -46,7 +46,7 @@ const About = () => {
         {/* ── Heading ── */}
         <motion.h2
           variants={itemVariants}
-          className="text-4xl font-bold text-[var(--color-text-primary)] mb-6 leading-tight"
+          className="text-4xl font-bold text-(--color-text-primary) mb-6 leading-tight"
         >
           Turning ideas into{" "}
           <span style={{ color: "var(--color-primary)" }}>
@@ -57,7 +57,7 @@ const About = () => {
         {/* ── Bio ── */}
         <motion.p
           variants={itemVariants}
-          className="text-base text-[var(--color-text-secondary)]"
+          className="text-base text-(--color-text-secondary)"
           style={{ lineHeight: "1.8" }}
         >
           I'm Anurag Vaidya, an aspiring backend developer with a passion for
