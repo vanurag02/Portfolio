@@ -1,4 +1,8 @@
-const { Education, Skill, Project } = require("../models/model");
+/* =============== IMPORTS =============== */
+const dotenv = require("dotenv");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const { Education, Skill, Project, User } = require("../models/model");
 
 /* =============== EDUCATION CONTROLLERS =============== */
 
@@ -172,6 +176,97 @@ const deleteProject = async (req, res) => {
   }
 };
 
+/* =============== ADMIN CONTROLLERS =============== */
+
+// REGISTER
+const register = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    const existing = await User.findOne({ username });
+
+    if (existing) {
+      res.status(400).json({ sucess: false, message: "Admin already exists." });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 12);
+    await User.create({ username, password: hashedPassword });
+    res
+      .status(201)
+      .json({ success: true, message: "Admin registered successfully." });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// LOGIN
+const login = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    // --- INPUT VALIDATION ---
+    if (!username || !password) {
+      res.status(400).json({
+        status: false,
+        message: "Username and password are required.",
+      });
+    }
+
+    // --- FIND USER ---
+    const user = await User.findOne({ username });
+    if (!user) {
+      res.status(400).json({ status: false, message: "Invalid credentials." });
+    }
+
+    // --- PASSWORD CHECK ---
+    const isPassowrdMatch = await bcrypt.compare(password, user.password);
+    if (!isPassowrdMatch) {
+      res.status(400).json({ status: false, message: "Invalid credentials." });
+    }
+
+    // --- JWT GENERATE ---
+    const token = jwt.sign(
+      { id: user._id, username: user.username },
+      process.env.JWT_SECRET,
+      { expiresIn: "7d" },
+    );
+
+    // --- COOKIE SETUP ---
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    });
+
+    res.status(200).json({ success: true, message: "Logged in successfully" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// LOGOUT
+const logout = async (req, res) => {
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      sameSite: "lax",
+    });
+    res.status(200).json({ success: true, message: "Logged out successfully" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// GET-ME
+const getMe = async (req, res) => {
+  try {
+    res.status(200).json({ success: true, user: req.user });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 /* =============== EXPORTS =============== */
 module.exports = {
   getEducation,
@@ -186,4 +281,8 @@ module.exports = {
   createProject,
   updateProject,
   deleteProject,
+  register,
+  login,
+  logout,
+  getMe,
 };

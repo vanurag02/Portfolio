@@ -13,7 +13,12 @@ const {
   createProject,
   updateProject,
   deleteProject,
+  register,
+  login,
+  logout,
+  getMe,
 } = require("../controllers/controller");
+const protect = require("../middleware/authMiddleware");
 
 /* =============== EDUCATION ROUTES =============== */
 router.get("/education", getEducation);
@@ -32,5 +37,11 @@ router.get("/projects", getProjects);
 router.post("/projects", createProject);
 router.put("/projects/:id", updateProject);
 router.delete("/projects/:id", deleteProject);
+
+/* =============== AUTH ROUTES =============== */
+router.post("/auth/register", register);
+router.post("/auth/login", login);
+router.post("/auth/logout", protect, logout);
+router.get("/auth/me", protect, getMe);
 
 module.exports = router;

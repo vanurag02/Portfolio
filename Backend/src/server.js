@@ -1,6 +1,7 @@
 /* =============== IMPORTS =============== */
 const dotenv = require("dotenv");
 const app = require("./app");
+const cookieParser = require("cookie-parser");
 const connectDB = require("./config/db");
 
 /* =============== DOTENV CONFIGURATION =============== */
