@@ -13,7 +13,7 @@ const HOST = "127.0.0.1";
 
 /* =============== START SERVER =============== */
 connectDB().then(() => {
-  app.listen(PORT, HOST, () => {
-    console.log(`Server running at http://${HOST}:${PORT}`);
+  app.listen(5000, () => {
+    console.log("Server running at http://localhost:5000");
   });
 });

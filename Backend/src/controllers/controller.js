@@ -204,42 +204,45 @@ const login = async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    // --- INPUT VALIDATION ---
     if (!username || !password) {
-      res.status(400).json({
-        status: false,
-        message: "Username and password are required.",
-      });
+      return res
+        .status(400)
+        .json({
+          success: false,
+          message: "Username and password are required.",
+        });
     }
 
-    // --- FIND USER ---
     const user = await User.findOne({ username });
     if (!user) {
-      res.status(400).json({ status: false, message: "Invalid credentials." });
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid credentials." });
     }
 
-    // --- PASSWORD CHECK ---
-    const isPassowrdMatch = await bcrypt.compare(password, user.password);
-    if (!isPassowrdMatch) {
-      res.status(400).json({ status: false, message: "Invalid credentials." });
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+    if (!isPasswordMatch) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid credentials." });
     }
 
-    // --- JWT GENERATE ---
     const token = jwt.sign(
       { id: user._id, username: user.username },
       process.env.JWT_SECRET,
       { expiresIn: "7d" },
     );
 
-    // --- COOKIE SETUP ---
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,
+      secure: false, // ← HTTP for localhost
       sameSite: "lax",
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    res.status(200).json({ success: true, message: "Logged in successfully" });
+    return res
+      .status(200)
+      .json({ success: true, message: "Logged in successfully" });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
