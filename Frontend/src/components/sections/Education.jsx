@@ -116,7 +116,7 @@ const Education = () => {
                   {/* Content */}
                   <div className="flex flex-col gap-1">
                     <span
-                      className="text-base tracking-widest uppercase"
+                      className="text-base font-medium tracking-wide"
                       style={{ color: "var(--color-primary)" }}
                     >
                       {item.year}

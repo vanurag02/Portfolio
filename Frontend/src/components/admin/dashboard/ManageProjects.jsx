@@ -147,7 +147,7 @@ const ManageProjects = () => {
             setShowForm(true);
           }}
           whileTap={{ scale: 0.97 }}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium"
+          className="flex items-center gap-2 px-4 py-2 rounded text-sm font-medium"
           style={{ background: "var(--color-primary)", color: "#ffffff" }}
         >
           <Plus size={16} />
@@ -163,7 +163,7 @@ const ManageProjects = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25 }}
-            className="rounded-xl border p-6 mb-6 flex flex-col gap-4"
+            className="rounded-md border p-6 mb-6 flex flex-col gap-4"
             style={{
               borderColor: "var(--color-primary)",
               background: "var(--color-bg-subtle)",
@@ -287,7 +287,7 @@ const ManageProjects = () => {
                 onClick={handleSubmit}
                 disabled={submitting}
                 whileTap={{ scale: 0.97 }}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium"
+                className="flex items-center gap-2 px-4 py-2 rounded-sm text-sm font-medium"
                 style={{ background: "var(--color-primary)", color: "#ffffff" }}
               >
                 <Check size={14} />
@@ -296,7 +296,7 @@ const ManageProjects = () => {
               <motion.button
                 onClick={resetForm}
                 whileTap={{ scale: 0.97 }}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium"
+                className="flex items-center gap-2 px-4 py-2 rounded-sm text-sm font-medium"
                 style={{
                   background: "var(--color-bg-subtle)",
                   color: "var(--color-text-secondary)",
@@ -313,7 +313,7 @@ const ManageProjects = () => {
 
       {/* ── List ── */}
       {loading ? (
-        <div className="flex flex-col gap-3 animate-pulse">
+        <div className="flex flex-col gap-4 animate-pulse">
           {[1, 2].map((i) => (
             <div
               key={i}
@@ -327,31 +327,31 @@ const ManageProjects = () => {
           No projects yet.
         </p>
       ) : (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-6">
           {data.map((item) => (
             <motion.div
               key={item._id}
               layout
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="flex items-start justify-between rounded-xl border px-5 py-4 gap-4"
+              className="flex items-start justify-between rounded-md border px-5 py-4 gap-4"
               style={{
                 borderColor: "var(--color-border)",
                 background: "var(--color-bg-subtle)",
               }}
             >
-              <div className="flex flex-col gap-1 flex-1 min-w-0">
+              <div className="flex flex-col gap-3 flex-1 min-w-0">
                 <span
-                  className="text-sm font-semibold truncate"
+                  className="font-semibold truncate"
                   style={{ color: "var(--color-text-primary)" }}
                 >
                   {item.title}
                 </span>
-                <div className="flex flex-wrap gap-1 mt-1">
+                <div className="flex flex-wrap gap-2 mt-1">
                   {(item.techStack || []).slice(0, 4).map((tech) => (
                     <span
                       key={tech}
-                      className="text-xs px-2 py-0.5 rounded-full"
+                      className="text-xs font-medium px-2 py-1 rounded-sm"
                       style={{
                         color: "var(--color-blue-9)",
                         background: "var(--color-blue-1)",
@@ -362,10 +362,10 @@ const ManageProjects = () => {
                   ))}
                   {item.techStack?.length > 4 && (
                     <span
-                      className="text-xs px-2 py-0.5 rounded-full"
+                      className="text-xs font-medium px-2 py-1 rounded-sm"
                       style={{
-                        color: "var(--color-text-secondary)",
-                        background: "var(--color-border)",
+                        color: "var(--color-text-primary)",
+                        background: "var(--color-border-strong)",
                       }}
                     >
                       +{item.techStack.length - 4} more

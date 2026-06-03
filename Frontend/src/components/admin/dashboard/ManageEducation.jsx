@@ -122,7 +122,7 @@ const ManageEducation = () => {
             setShowForm(true);
           }}
           whileTap={{ scale: 0.97 }}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium"
+          className="flex items-center gap-2 px-4 py-2 rounded text-sm font-medium"
           style={{ background: "var(--color-primary)", color: "#ffffff" }}
         >
           <Plus size={16} />
@@ -138,7 +138,7 @@ const ManageEducation = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25 }}
-            className="rounded-xl border p-6 mb-6 flex flex-col gap-4"
+            className="rounded-md border p-6 mb-6 flex flex-col gap-4"
             style={{
               borderColor: "var(--color-primary)",
               background: "var(--color-bg-subtle)",
@@ -183,7 +183,7 @@ const ManageEducation = () => {
                 onClick={handleSubmit}
                 disabled={submitting}
                 whileTap={{ scale: 0.97 }}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium"
+                className="flex items-center gap-2 px-4 py-2 rounded-sm text-sm font-medium"
                 style={{ background: "var(--color-primary)", color: "#ffffff" }}
               >
                 <Check size={14} />
@@ -192,7 +192,7 @@ const ManageEducation = () => {
               <motion.button
                 onClick={resetForm}
                 whileTap={{ scale: 0.97 }}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium"
+                className="flex items-center gap-2 px-4 py-2 rounded-sm text-sm font-medium"
                 style={{
                   background: "var(--color-bg-subtle)",
                   color: "var(--color-text-secondary)",
@@ -223,7 +223,7 @@ const ManageEducation = () => {
           No education entries yet.
         </p>
       ) : (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
           {data.map((item) => (
             <motion.div
               key={item._id}
@@ -231,7 +231,7 @@ const ManageEducation = () => {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 8 }}
-              className="flex items-center justify-between rounded-xl border px-5 py-4"
+              className="flex items-center justify-between rounded-md border px-5 py-4"
               style={{
                 borderColor: "var(--color-border)",
                 background: "var(--color-bg-subtle)",

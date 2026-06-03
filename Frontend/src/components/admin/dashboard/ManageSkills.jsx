@@ -119,7 +119,7 @@ const ManageSkills = () => {
             setShowForm(true);
           }}
           whileTap={{ scale: 0.97 }}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium"
+          className="flex items-center gap-2 px-4 py-2 rounded text-sm font-medium"
           style={{ background: "var(--color-primary)", color: "#ffffff" }}
         >
           <Plus size={16} />
@@ -135,7 +135,7 @@ const ManageSkills = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25 }}
-            className="rounded-xl border p-6 mb-6 flex flex-col gap-4"
+            className="rounded-md border p-6 mb-6 flex flex-col gap-4"
             style={{
               borderColor: "var(--color-primary)",
               background: "var(--color-bg-subtle)",
@@ -153,7 +153,7 @@ const ManageSkills = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="Skill name (e.g. Node.js)"
-              className="w-full rounded-lg border px-3 py-2.5 text-sm outline-none"
+              className="w-full rounded-sm border px-3 py-2.5 text-sm outline-none"
               style={{
                 borderColor: "var(--color-border)",
                 background: "var(--color-bg)",
@@ -166,7 +166,7 @@ const ManageSkills = () => {
               name="category"
               value={form.category}
               onChange={handleChange}
-              className="w-full rounded-lg border px-3 py-2.5 text-sm outline-none"
+              className="w-full rounded-sm border px-3 py-2.5 text-sm outline-none"
               style={{
                 borderColor: "var(--color-border)",
                 background: "var(--color-bg)",
@@ -189,7 +189,7 @@ const ManageSkills = () => {
               onChange={handleChange}
               placeholder="Display order (1, 2...)"
               type="number"
-              className="w-full rounded-lg border px-3 py-2.5 text-sm outline-none"
+              className="w-full rounded-sm border px-3 py-2.5 text-sm outline-none"
               style={{
                 borderColor: "var(--color-border)",
                 background: "var(--color-bg)",
@@ -208,7 +208,7 @@ const ManageSkills = () => {
                 onClick={handleSubmit}
                 disabled={submitting}
                 whileTap={{ scale: 0.97 }}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium"
+                className="flex items-center gap-2 px-4 py-2 rounded-sm text-sm font-medium"
                 style={{ background: "var(--color-primary)", color: "#ffffff" }}
               >
                 <Check size={14} />
@@ -217,7 +217,7 @@ const ManageSkills = () => {
               <motion.button
                 onClick={resetForm}
                 whileTap={{ scale: 0.97 }}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium"
+                className="flex items-center gap-2 px-4 py-2 rounded-sm text-sm font-medium"
                 style={{
                   background: "var(--color-bg-subtle)",
                   color: "var(--color-text-secondary)",
@@ -252,10 +252,10 @@ const ManageSkills = () => {
           {Object.entries(grouped).map(([category, skillList]) => (
             <div key={category}>
               {/* Category label */}
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-3 mb-4">
                 <span
-                  className="text-xs font-mono font-medium uppercase tracking-widest"
-                  style={{ color: "var(--color-text-secondary)" }}
+                  className="text-base font-medium uppercase tracking-wide"
+                  style={{ color: "var(--color-text-primary)" }}
                 >
                   {category}
                 </span>
@@ -265,14 +265,14 @@ const ManageSkills = () => {
                 />
               </div>
 
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-4">
                 {skillList.map((item) => (
                   <motion.div
                     key={item._id}
                     layout
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="flex items-center justify-between rounded-xl border px-5 py-3"
+                    className="flex items-center justify-between rounded-md border px-5 py-3"
                     style={{
                       borderColor: "var(--color-border)",
                       background: "var(--color-bg-subtle)",

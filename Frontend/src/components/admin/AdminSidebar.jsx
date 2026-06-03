@@ -38,7 +38,7 @@ const AdminSidebar = ({ activeTab, setActiveTab }) => {
         {/* Name */}
         <div className="px-2">
           <h1
-            className="text-2xl font-medium"
+            className="text-2xl font-semibold"
             style={{ color: "var(--color-text-primary)" }}
           >
             Admin Panel
@@ -51,7 +51,7 @@ const AdminSidebar = ({ activeTab, setActiveTab }) => {
             transition={{ delay: 0.5, duration: 0.4, ease: "easeOut" }}
           />
           <p
-            className="text-xs font-medium uppercase tracking-wider"
+            className="text-[14px] font-medium tracking-wide"
             style={{ color: "var(--color-text-secondary)" }}
           >
             {user?.username}
@@ -77,7 +77,7 @@ const AdminSidebar = ({ activeTab, setActiveTab }) => {
                     <AnimatePresence>
                       {(isActive || isHovered) && (
                         <motion.div
-                          className="absolute inset-0 rounded-lg"
+                          className="absolute inset-0 rounded-md"
                           style={{
                             background: isActive
                               ? "linear-gradient(90deg, var(--color-primary)18, transparent)"
@@ -112,7 +112,7 @@ const AdminSidebar = ({ activeTab, setActiveTab }) => {
                         color:
                           isActive || isHovered
                             ? "var(--color-primary)"
-                            : "var(--color-text-secondary)",
+                            : "var(--color-text-primary)",
                       }}
                     />
 
@@ -125,7 +125,6 @@ const AdminSidebar = ({ activeTab, setActiveTab }) => {
                             ? "var(--color-primary)"
                             : "var(--color-text-secondary)",
                       }}
-                      animate={{ x: isHovered && !isActive ? 4 : 0 }}
                       transition={{ duration: 0.15 }}
                     >
                       {label}
@@ -149,9 +148,8 @@ const AdminSidebar = ({ activeTab, setActiveTab }) => {
         />
         <motion.button
           onClick={logout}
-          whileHover={{ x: 4 }}
           whileTap={{ scale: 0.97 }}
-          className="flex items-center gap-3 px-5 py-2.5 rounded-lg w-full text-left"
+          className="flex items-center gap-3 px-5 py-2.5 rounded-md w-full cursor-pointer text-left"
           style={{ color: "var(--color-red-5)" }}
         >
           <LogOut size={16} />
